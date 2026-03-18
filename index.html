@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Luxury Gold | Стандартное приглашение</title>
+    <title>Luxury Gold | Стандарт с картой</title>
     <style>
         * {
             margin: 0;
@@ -15,16 +15,17 @@
         body {
             background: #0c0b0a;
             padding: 20px;
-            background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
-                              radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
         }
         
         .card {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: #1a1714;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 24px;
+            border-radius: 30px;
             padding: 50px 40px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9);
             position: relative;
@@ -42,7 +43,12 @@
         .content {
             position: relative;
             z-index: 2;
+        }
+        
+        /* Шапка */
+        .header {
             text-align: center;
+            margin-bottom: 40px;
         }
         
         .event-type {
@@ -60,6 +66,7 @@
             margin-bottom: 10px;
             color: #f5e6d3;
             text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            line-height: 1.2;
         }
         
         .couple span {
@@ -72,25 +79,26 @@
         .date {
             font-size: 28px;
             color: #e5d5b5;
-            margin: 20px 0 30px;
+            margin: 20px 0 10px;
             letter-spacing: 2px;
         }
         
         /* Таймер */
         .timer-section {
             margin: 40px 0;
-            padding: 25px 15px;
+            padding: 30px 20px;
             border: 1px solid rgba(212, 175, 55, 0.2);
             background: rgba(0,0,0,0.3);
-            border-radius: 20px;
+            border-radius: 30px;
         }
         
         .timer-title {
             font-size: 18px;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             color: #b5a17c;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-align: center;
         }
         
         .timer {
@@ -102,11 +110,11 @@
         
         .timer-item {
             text-align: center;
-            min-width: 80px;
+            min-width: 90px;
         }
         
         .timer-value {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 400;
             color: #d4af37;
             line-height: 1;
@@ -121,33 +129,141 @@
             margin-top: 5px;
         }
         
-        .venue-block {
+        /* Место проведения (кликабельное) */
+        .venue-section {
             margin: 40px 0;
+            text-align: center;
+        }
+        
+        .venue-label {
+            font-size: 16px;
+            letter-spacing: 4px;
+            color: #8a7f6b;
+            margin-bottom: 10px;
         }
         
         .venue-name {
-            font-size: 32px;
+            font-size: 36px;
             color: #f0e6d2;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .venue-address {
-            font-size: 18px;
+            font-size: 20px;
             color: #b5a17c;
             font-style: italic;
+            margin-bottom: 15px;
         }
         
+        .venue-address a {
+            color: #d4af37;
+            text-decoration: none;
+            border-bottom: 1px dashed #d4af37;
+            transition: all 0.3s;
+        }
+        
+        .venue-address a:hover {
+            color: #e5c158;
+            border-bottom-style: solid;
+        }
+        
+        /* Карта */
+        .map-container {
+            margin: 30px 0 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            background: #2a251f;
+        }
+        
+        .map-container:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+        
+        .map-link {
+            display: block;
+            width: 100%;
+            height: 250px;
+            background: #2a251f;
+            position: relative;
+            text-decoration: none;
+        }
+        
+        /* Статичная карта (изображение) */
+        .static-map {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .map-link:hover .static-map {
+            opacity: 1;
+        }
+        
+        /* Или iframe (закомментирован, можно раскомментировать) */
+        /*
+        .map-iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+        }
+        */
+        
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            text-align: center;
+            color: #d4af37;
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+        
+        .route-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #0c0b0a;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: 15px;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .route-button:hover {
+            background: #e5c158;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Время */
         .time-details {
             font-size: 20px;
             color: #d4af37;
             margin: 30px 0;
-            padding: 15px;
+            padding: 15px 25px;
             background: rgba(212, 175, 55, 0.05);
             border-radius: 50px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
         
-        .rsvp {
-            margin: 40px 0 20px;
+        /* RSVP и контакты */
+        .rsvp-section {
+            text-align: center;
+            margin: 50px 0 30px;
         }
         
         .rsvp-button {
@@ -173,39 +289,73 @@
         }
         
         .contacts {
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
         }
         
         .contact-item {
-            color: #b5a17c;
+            text-align: center;
+        }
+        
+        .contact-name {
+            color: #d4af37;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-role {
+            color: #8a7f6b;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
         }
         
         .contact-item a {
-            color: #d4af37;
+            color: #f5e6d3;
             text-decoration: none;
             font-size: 18px;
-            margin-left: 8px;
+            transition: color 0.3s;
+        }
+        
+        .contact-item a:hover {
+            color: #d4af37;
         }
         
         .footer {
             margin-top: 40px;
+            text-align: center;
             font-size: 14px;
             color: #5e5340;
+            letter-spacing: 1px;
         }
         
-        @media (max-width: 600px) {
+        /* Адаптация */
+        @media (max-width: 700px) {
             .card { padding: 30px 20px; }
             .couple { font-size: 42px; }
             .couple span { font-size: 28px; margin: 0 8px; }
+            .date { font-size: 22px; }
             .timer-value { font-size: 36px; }
-            .timer-item { min-width: 60px; }
-            .contacts { gap: 20px; }
+            .timer-item { min-width: 70px; }
+            .venue-name { font-size: 28px; }
+            .venue-address { font-size: 18px; }
+            .map-link { height: 200px; }
+            .contacts { gap: 30px; }
+        }
+        
+        @media (max-width: 480px) {
+            .timer { gap: 10px; }
+            .timer-item { min-width: 60px; padding: 5px; }
+            .timer-value { font-size: 28px; }
+            .timer-label { font-size: 10px; }
+            .route-button { padding: 10px 20px; font-size: 14px; }
+            .rsvp-button { padding: 14px 30px; font-size: 16px; }
         }
     </style>
 </head>
@@ -213,21 +363,53 @@
     <div class="card">
         <div class="content">
             <!-- ДАННЫЕ ДЛЯ ЗАМЕНЫ -->
-            <!-- Имена: ДАНИЯР & АСЕЛЬ -->
-            <!-- Дата: 15 августа 2026 18:00 -->
-            <!-- Место: РЕСТОРАН "ЭДЕМ" с адресом -->
-            <!-- Организатор: Айгуль, +7 (777) 123-45-67 -->
-            <!-- Контакты пары: Данияр +7 777 111-22-33, Асель +7 777 444-55-66 -->
+            <?php
+            // Имена пары
+            $groom_name = "ДАНИЯР";
+            $bride_name = "АСЕЛЬ";
             
-            <div class="event-type">ЭКО-СВАДЬБА В ЗОЛОТЫХ ТОНАХ</div>
-            <h1 class="couple">
-                ДАНИЯР <span>&</span> АСЕЛЬ
-            </h1>
-            <div class="date">15 АВГУСТА 2026 • 18:00</div>
+            // Дата и время
+            $event_date = "15 АВГУСТА 2026";
+            $event_time = "18:00";
+            $guest_gathering = "17:00"; // Сбор гостей
+            $ceremony_time = "18:00";    // Церемония
+            $furshet_time = "20:00";      // Фуршет
+            
+            // Место проведения
+            $venue_name = "РЕСТОРАН «ЭДЕМ»";
+            $venue_address = "микрорайон Горный Гигант, 15, Алматы";
+            $venue_address_short = "Горный Гигант, 15";
+            $venue_city = "Алматы";
+            
+            // Ссылка на карту (для кнопки "Проложить маршрут")
+            $map_link = "https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015";
+            
+            // Контакты
+            $organizer_name = "Айгуль";
+            $organizer_phone = "+7 (777) 123-45-67";
+            $groom_phone = "+7 (777) 111-22-33";
+            $bride_phone = "+7 (777) 444-55-66";
+            
+            // Дата для таймера (год, месяц-1, день, час, минута)
+            $timer_year = 2026;
+            $timer_month = 7; // Август (0-11)
+            $timer_day = 15;
+            $timer_hour = 18;
+            $timer_minute = 0;
+            ?>
+            
+            <!-- ШАПКА -->
+            <div class="header">
+                <div class="event-type">LUXURY GOLD WEDDING</div>
+                <h1 class="couple">
+                    <?php echo $groom_name; ?> <span>&</span> <?php echo $bride_name; ?>
+                </h1>
+                <div class="date"><?php echo $event_date; ?> • <?php echo $event_time; ?></div>
+            </div>
             
             <div class="gold-line"></div>
             
-            <!-- Таймер обратного отсчета -->
+            <!-- ТАЙМЕР -->
             <div class="timer-section">
                 <div class="timer-title">ДО НАЧАЛА ТОРЖЕСТВА</div>
                 <div class="timer" id="timer">
@@ -250,34 +432,86 @@
                 </div>
             </div>
             
-            <div class="venue-block">
-                <div class="venue-name">РЕСТОРАН «ЭДЕМ»</div>
-                <div class="venue-address">микрорайон Горный Гигант, 15, Алматы</div>
+            <!-- МЕСТО ПРОВЕДЕНИЯ (кликабельное) -->
+            <div class="venue-section">
+                <div class="venue-label">МЕСТО ПРОВЕДЕНИЯ</div>
+                <div class="venue-name"><?php echo $venue_name; ?></div>
+                <div class="venue-address">
+                    <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer">
+                        <?php echo $venue_address; ?>
+                    </a>
+                </div>
             </div>
             
+            <!-- КАРТА (кликабельная, ведет на 2GIS/Google Maps) -->
+            <div class="map-container">
+                <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer" class="map-link">
+                    <!-- Статичная карта-заглушка (можно заменить на реальную карту) -->
+                    <svg class="static-map" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid slice">
+                        <rect width="800" height="250" fill="#2a251f"/>
+                        <!-- Золотая сетка -->
+                        <path d="M0 50 L800 50" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M0 100 L800 100" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M0 150 L800 150" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M0 200 L800 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M100 0 L100 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M300 0 L300 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M500 0 L500 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <path d="M700 0 L700 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                        <!-- Маркер местоположения -->
+                        <circle cx="400" cy="125" r="15" fill="#d4af37" opacity="0.3"/>
+                        <circle cx="400" cy="125" r="8" fill="#d4af37"/>
+                        <text x="400" y="170" text-anchor="middle" fill="#d4af37" font-size="12" font-family="Arial"><?php echo $venue_name; ?></text>
+                    </svg>
+                    <div class="map-overlay">
+                        <span>📍 Нажмите, чтобы открыть карту</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- КНОПКА "ПРОЛОЖИТЬ МАРШРУТ" -->
+            <div style="text-align: center;">
+                <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer" class="route-button">
+                    🗺️ ПРОЛОЖИТЬ МАРШРУТ
+                </a>
+            </div>
+            
+            <!-- ВРЕМЯ -->
             <div class="time-details">
-                СБОР ГОСТЕЙ В 17:00 • ЦЕРЕМОНИЯ В 18:00 • ФУРШЕТ С 20:00
+                СБОР ГОСТЕЙ В <?php echo $guest_gathering; ?> • ЦЕРЕМОНИЯ В <?php echo $ceremony_time; ?> • ФУРШЕТ С <?php echo $furshet_time; ?>
             </div>
             
-            <div class="rsvp">
+            <!-- RSVP -->
+            <div class="rsvp-section">
                 <a href="#" class="rsvp-button">ПОДТВЕРДИТЬ УЧАСТИЕ</a>
             </div>
             
+            <!-- КОНТАКТЫ -->
             <div class="contacts">
-                <div class="contact-item">Данияр: <a href="tel:+77771112233">+7 (777) 111-22-33</a></div>
-                <div class="contact-item">Асель: <a href="tel:+77774445566">+7 (777) 444-55-66</a></div>
+                <div class="contact-item">
+                    <div class="contact-name"><?php echo $groom_name; ?></div>
+                    <div class="contact-role">ЖЕНИХ</div>
+                    <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $groom_phone); ?>"><?php echo $groom_phone; ?></a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-name"><?php echo $bride_name; ?></div>
+                    <div class="contact-role">НЕВЕСТА</div>
+                    <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $bride_phone); ?>"><?php echo $bride_phone; ?></a>
+                </div>
             </div>
             
+            <!-- ОРГАНИЗАТОР -->
             <div class="footer">
-                Организатор: Айгуль, +7 (777) 123-45-67 • АЛМАТЫ • 2026
+                Организатор: <?php echo $organizer_name; ?>, <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $organizer_phone); ?>" style="color: #d4af37; text-decoration: none;"><?php echo $organizer_phone; ?></a><br>
+                <?php echo $venue_city; ?> • <?php echo $event_date; ?>
             </div>
         </div>
     </div>
     
     <script>
         (function() {
-            // Установите дату свадьбы (год, месяц (0-11), день, часы, минуты)
-            const weddingDate = new Date(2026, 7, 15, 18, 0, 0); // 15 августа 2026, 18:00
+            // Данные для таймера (синхронизированы с PHP)
+            const weddingDate = new Date(<?php echo $timer_year; ?>, <?php echo $timer_month; ?>, <?php echo $timer_day; ?>, <?php echo $timer_hour; ?>, <?php echo $timer_minute; ?>, 0);
             
             function updateTimer() {
                 const now = new Date();
