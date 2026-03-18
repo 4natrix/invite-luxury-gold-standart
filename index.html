@@ -14,29 +14,59 @@
         
         body {
             background: #0c0b0a;
-            padding: 20px;
+            padding: 16px;
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .card {
             max-width: 900px;
+            width: 100%;
             margin: 0 auto;
             background: #1a1714;
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 30px;
-            padding: 50px 40px;
+            padding: 40px 35px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9);
             position: relative;
             overflow: hidden;
         }
         
+        /* Декоративные элементы */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
         .gold-line {
-            width: 100px;
+            width: 80px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
-            margin: 20px auto;
+            margin: 15px auto;
         }
         
         .content {
@@ -46,109 +76,126 @@
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
         .event-type {
-            font-size: 14px;
-            letter-spacing: 8px;
+            font-size: 12px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: #d4af37;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             font-weight: 300;
+            word-spacing: 2px;
         }
         
         .couple {
-            font-size: 64px;
+            font-size: clamp(32px, 10vw, 64px);
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #f5e6d3;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
             line-height: 1.2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px 15px;
+        }
+        
+        .couple-name {
+            white-space: nowrap;
         }
         
         .couple span {
             display: inline-block;
-            font-size: 40px;
+            font-size: clamp(24px, 6vw, 40px);
             color: #d4af37;
-            margin: 0 15px;
+            margin: 0 5px;
+            line-height: 1;
         }
         
         .date {
-            font-size: 28px;
+            font-size: clamp(18px, 5vw, 28px);
             color: #e5d5b5;
-            margin: 20px 0 10px;
-            letter-spacing: 2px;
+            margin: 15px 0 5px;
+            letter-spacing: 1px;
         }
         
         .timer-section {
-            margin: 40px 0;
-            padding: 30px 20px;
+            margin: 30px 0;
+            padding: 25px 15px;
             border: 1px solid rgba(212, 175, 55, 0.2);
             background: rgba(0,0,0,0.3);
             border-radius: 30px;
         }
         
         .timer-title {
-            font-size: 18px;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             color: #b5a17c;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
         }
         
         .timer {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 10px;
             flex-wrap: wrap;
         }
         
         .timer-item {
             text-align: center;
-            min-width: 90px;
+            min-width: 70px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 10px 5px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
         }
         
         .timer-value {
-            font-size: 52px;
+            font-size: clamp(32px, 8vw, 52px);
             font-weight: 400;
             color: #d4af37;
             line-height: 1;
-            text-shadow: 0 0 20px #d4af37;
+            text-shadow: 0 0 15px #d4af37;
         }
         
         .timer-label {
-            font-size: 14px;
+            font-size: 11px;
             text-transform: uppercase;
             color: #8a7f6b;
-            letter-spacing: 2px;
-            margin-top: 5px;
+            letter-spacing: 1px;
+            margin-top: 3px;
         }
         
         .venue-section {
-            margin: 40px 0;
+            margin: 30px 0;
             text-align: center;
         }
         
         .venue-label {
-            font-size: 16px;
-            letter-spacing: 4px;
+            font-size: 13px;
+            letter-spacing: 3px;
             color: #8a7f6b;
-            margin-bottom: 10px;
-        }
-        
-        .venue-name {
-            font-size: 36px;
-            color: #f0e6d2;
             margin-bottom: 8px;
         }
         
+        .venue-name {
+            font-size: clamp(24px, 6vw, 36px);
+            color: #f0e6d2;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
         .venue-address {
-            font-size: 20px;
+            font-size: clamp(16px, 4vw, 20px);
             color: #b5a17c;
             font-style: italic;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            padding: 0 10px;
         }
         
         .venue-address a {
@@ -156,6 +203,7 @@
             text-decoration: none;
             border-bottom: 1px dashed #d4af37;
             transition: all 0.3s;
+            word-break: break-word;
         }
         
         .venue-address a:hover {
@@ -163,15 +211,14 @@
             border-bottom-style: solid;
         }
         
-        /* Блок с картами */
         .maps-section {
-            margin: 30px 0 20px;
+            margin: 25px 0 15px;
         }
         
         .map-tabs {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 8px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
@@ -180,9 +227,9 @@
             background: transparent;
             border: 1px solid rgba(212, 175, 55, 0.3);
             color: #b5a17c;
-            padding: 10px 25px;
+            padding: 8px 16px;
             border-radius: 40px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
             font-family: inherit;
@@ -215,22 +262,18 @@
         
         .map-frame {
             width: 100%;
-            height: 250px;
+            height: 200px;
             border: 0;
             display: block;
         }
         
         .static-map {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
             opacity: 0.9;
             transition: opacity 0.3s;
             display: block;
-        }
-        
-        .map-container:hover .static-map {
-            opacity: 1;
         }
         
         .map-link {
@@ -244,36 +287,45 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 15px;
             text-align: center;
             color: #d4af37;
-            font-size: 16px;
-            letter-spacing: 2px;
+            font-size: 14px;
+            letter-spacing: 1px;
             pointer-events: none;
         }
         
         .route-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0 30px;
+            gap: 10px;
+            margin: 15px 0 20px;
             flex-wrap: wrap;
         }
         
         .route-button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid #d4af37;
             color: #d4af37;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 40px;
             text-decoration: none;
-            font-size: 15px;
-            letter-spacing: 1px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 480px) {
+            .route-button {
+                white-space: normal;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
         }
         
         .route-button:hover {
@@ -283,40 +335,39 @@
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
         
-        .route-button.google:hover { background: #4285F4; border-color: #4285F4; color: white; }
-        .route-button.yandex:hover { background: #FF3B3B; border-color: #FF3B3B; color: white; }
-        .route-button.duogis:hover { background: #F28C38; border-color: #F28C38; color: white; }
-        
         .time-details {
-            font-size: 20px;
+            font-size: clamp(16px, 4vw, 20px);
             color: #d4af37;
-            margin: 30px 0;
-            padding: 15px 25px;
+            margin: 25px 0;
+            padding: 12px 15px;
             background: rgba(212, 175, 55, 0.05);
-            border-radius: 50px;
+            border-radius: 40px;
             text-align: center;
             border: 1px solid rgba(212, 175, 55, 0.2);
+            line-height: 1.4;
         }
         
         .rsvp-section {
             text-align: center;
-            margin: 50px 0 30px;
+            margin: 30px 0 25px;
         }
         
         .rsvp-button {
             display: inline-block;
             background: #d4af37;
             color: #0c0b0a;
-            padding: 18px 50px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 16px;
             text-decoration: none;
             border-radius: 50px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             font-weight: 600;
             text-transform: uppercase;
             border: none;
             transition: all 0.3s;
             box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            width: 100%;
+            max-width: 350px;
         }
         
         .rsvp-button:hover {
@@ -326,38 +377,41 @@
         }
         
         .contacts {
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 25px;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 25px;
             flex-wrap: wrap;
         }
         
         .contact-item {
             text-align: center;
+            min-width: 130px;
         }
         
         .contact-name {
             color: #d4af37;
             font-size: 20px;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
         
         .contact-role {
             color: #8a7f6b;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
         
         .contact-item a {
             color: #f5e6d3;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             transition: color 0.3s;
+            display: inline-block;
+            word-break: break-word;
         }
         
         .contact-item a:hover {
@@ -365,11 +419,12 @@
         }
         
         .footer {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             color: #5e5340;
             letter-spacing: 1px;
+            line-height: 1.6;
         }
         
         .footer a {
@@ -381,27 +436,55 @@
             text-decoration: underline;
         }
         
-        @media (max-width: 700px) {
-            .card { padding: 30px 20px; }
-            .couple { font-size: 42px; }
-            .couple span { font-size: 28px; margin: 0 8px; }
-            .date { font-size: 22px; }
-            .timer-value { font-size: 36px; }
-            .timer-item { min-width: 70px; }
-            .venue-name { font-size: 28px; }
-            .venue-address { font-size: 18px; }
-            .contacts { gap: 30px; }
-            .map-tab { padding: 8px 15px; font-size: 14px; }
-        }
-        
-        @media (max-width: 480px) {
-            .timer { gap: 10px; }
-            .timer-item { min-width: 60px; }
-            .timer-value { font-size: 28px; }
-            .timer-label { font-size: 10px; }
-            .route-button { padding: 8px 15px; font-size: 13px; }
-            .rsvp-button { padding: 14px 30px; font-size: 16px; }
-            .map-frame, .static-map { height: 200px; }
+        /* Адаптация для маленьких телефонов */
+        @media (max-width: 400px) {
+            body {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 25px 15px;
+                border-radius: 20px;
+            }
+            
+            .event-type {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+            
+            .timer-item {
+                min-width: 60px;
+                padding: 8px 3px;
+            }
+            
+            .timer-value {
+                font-size: 28px;
+            }
+            
+            .timer-label {
+                font-size: 9px;
+            }
+            
+            .map-tab {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .contacts {
+                gap: 15px;
+            }
+            
+            .contact-item {
+                min-width: 110px;
+            }
+            
+            .contact-name {
+                font-size: 18px;
+            }
+            
+            .contact-item a {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -409,14 +492,14 @@
     <div class="card">
         <div class="content">
             <!-- ========== НАСТРОЙКИ (МЕНЯЙ ЗДЕСЬ) ========== -->
-            <!-- Имена -->
-            <div style="display: none;">ДАНИЯР и АСЕЛЬ</div>
             
             <!-- ШАПКА -->
             <div class="header">
                 <div class="event-type">LUXURY GOLD WEDDING</div>
                 <h1 class="couple">
-                    ДАНИЯР <span>&</span> АСЕЛЬ
+                    <span class="couple-name">ДАНИЯР</span> 
+                    <span>&</span> 
+                    <span class="couple-name">АСЕЛЬ</span>
                 </h1>
                 <div class="date">15 АВГУСТА 2026 • 18:00</div>
             </div>
@@ -461,9 +544,9 @@
             <div class="maps-section">
                 <!-- Вкладки переключения карт -->
                 <div class="map-tabs">
-                    <button class="map-tab active" onclick="showMap('2gis')">2GIS</button>
-                    <button class="map-tab" onclick="showMap('google')">Google Maps</button>
-                    <button class="map-tab" onclick="showMap('yandex')">Яндекс Карты</button>
+                    <button class="map-tab active" onclick="showMap('2gis', this)">2GIS</button>
+                    <button class="map-tab" onclick="showMap('google', this)">Google</button>
+                    <button class="map-tab" onclick="showMap('yandex', this)">Яндекс</button>
                 </div>
                 
                 <!-- Контейнер для карты -->
@@ -471,23 +554,23 @@
                     <!-- 2GIS (по умолчанию) -->
                     <div id="map-2gis" style="display: block;">
                         <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="map-link">
-                            <svg class="static-map" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid slice">
-                                <rect width="800" height="250" fill="#2a251f"/>
-                                <!-- Золотая сетка -->
-                                <path d="M0 50 L800 50" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M0 100 L800 100" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M0 150 L800 150" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M0 200 L800 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M100 0 L100 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M300 0 L300 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M500 0 L500 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <path d="M700 0 L700 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                                <!-- Логотип 2GIS -->
-                                <text x="120" y="40" fill="#d4af37" font-size="16" font-weight="bold" font-family="Arial">2GIS</text>
-                                <!-- Маркер местоположения -->
-                                <circle cx="400" cy="125" r="15" fill="#F28C38" opacity="0.3"/>
-                                <circle cx="400" cy="125" r="8" fill="#F28C38"/>
-                                <text x="400" y="170" text-anchor="middle" fill="#F28C38" font-size="12" font-family="Arial">РЕСТОРАН ЭДЕМ</text>
+                            <svg class="static-map" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid slice">
+                                <rect width="800" height="200" fill="#2a251f"/>
+                                <!-- Сетка -->
+                                <path d="M0 40 L800 40" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 80 L800 80" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 120 L800 120" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 160 L800 160" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M160 0 L160 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M320 0 L320 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M480 0 L480 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M640 0 L640 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <!-- Логотип -->
+                                <text x="120" y="30" fill="#d4af37" font-size="14" font-weight="bold" font-family="Arial">2GIS</text>
+                                <!-- Маркер -->
+                                <circle cx="400" cy="100" r="15" fill="#F28C38" opacity="0.3"/>
+                                <circle cx="400" cy="100" r="8" fill="#F28C38"/>
+                                <text x="400" y="140" text-anchor="middle" fill="#F28C38" font-size="10" font-family="Arial">РЕСТОРАН</text>
                             </svg>
                             <div class="map-overlay">
                                 <span>📍 Открыть в 2GIS</span>
@@ -512,16 +595,16 @@
                     </div>
                 </div>
                 
-                <!-- Кнопки маршрутов под картой -->
+                <!-- Кнопки маршрутов -->
                 <div class="route-buttons">
-                    <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="route-button duogis">
-                        🧭 2GIS Маршрут
+                    <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="route-button">
+                        🧭 2GIS
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=43.238,76.928" target="_blank" rel="noopener noreferrer" class="route-button google">
-                        🗺️ Google Маршрут
+                    <a href="https://www.google.com/maps/search/?api=1&query=43.238,76.928" target="_blank" rel="noopener noreferrer" class="route-button">
+                        🗺️ Google
                     </a>
-                    <a href="https://yandex.ru/maps/?pt=76.928,43.238&z=16&l=map" target="_blank" rel="noopener noreferrer" class="route-button yandex">
-                        🧭 Яндекс Маршрут
+                    <a href="https://yandex.ru/maps/?pt=76.928,43.238&z=16&l=map" target="_blank" rel="noopener noreferrer" class="route-button">
+                        🧭 Яндекс
                     </a>
                 </div>
             </div>
@@ -591,7 +674,7 @@
         })();
         
         // Переключение карт
-        function showMap(mapType) {
+        function showMap(mapType, element) {
             // Скрыть все карты
             document.getElementById('map-2gis').style.display = 'none';
             document.getElementById('map-google').style.display = 'none';
@@ -603,9 +686,7 @@
             // Обновить активный класс у вкладок
             const tabs = document.querySelectorAll('.map-tab');
             tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Найти нажатую вкладку и сделать активной
-            event.target.classList.add('active');
+            element.classList.add('active');
         }
     </script>
 </body>
