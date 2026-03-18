@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дмитрий & Алина | Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  font-family:'Inter', sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero {
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1500&q=80') center/cover;
+}
+
+.hero-content {
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(40px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.label {
+  letter-spacing:4px;
+  font-size:12px;
+  color:#d4af37;
+  margin-bottom:20px;
+}
+
+.names {
+  font-family:'Cormorant Garamond', serif;
+  font-size:64px;
+}
+
+.and {
+  display:block;
+  color:#d4af37;
+  font-size:30px;
+  margin:5px 0;
+}
+
+.date {
+  margin-top:20px;
+  letter-spacing:3px;
+  color:#d4af37;
+}
+
+/* TIMER */
+.timer {
+  padding:80px 20px;
+  text-align:center;
+}
+
+.timer h2 {
+  font-family:'Cormorant Garamond', serif;
+  margin-bottom:30px;
+}
+
+.timer-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  max-width:500px;
+  margin:auto;
+  gap:15px;
+}
+
+.timer-item {
+  border:1px solid rgba(212,175,55,0.3);
+  padding:20px;
+}
+
+.num {
+  font-size:30px;
+  color:#d4af37;
+}
+
+.label-t {
+  font-size:12px;
+}
+
+/* LOCATION */
+.section {
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section h2 {
+  font-family:'Cormorant Garamond', serif;
+  margin-bottom:20px;
+}
+
+.map {
+  margin-top:30px;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.map iframe {
+  width:100%;
+  height:300px;
+  border:0;
+}
+
+/* BUTTONS */
+.btn {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.btn:hover {
+  background:#d4af37;
+  color:#000;
+}
+
+/* MUSIC */
+.music {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+}
+
+.music button {
+  background:#d4af37;
+  border:none;
+  padding:12px 20px;
+  cursor:pointer;
+}
+
+@media(max-width:600px){
+  .names {font-size:40px;}
+  .timer-grid {grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="label">WE ARE GETTING MARRIED</div>
+
+    <div class="names">
+      Дмитрий
+      <span class="and">&</span>
+      Алина
+    </div>
+
+    <div class="date">15 АВГУСТА 2026</div>
+  </div>
+</section>
+
+<!-- TIMER -->
+<section class="timer">
+  <h2>До свадьбы осталось</h2>
+
+  <div class="timer-grid">
+    <div class="timer-item"><div class="num" id="d">00</div><div class="label-t">дней</div></div>
+    <div class="timer-item"><div class="num" id="h">00</div><div class="label-t">часов</div></div>
+    <div class="timer-item"><div class="num" id="m">00</div><div class="label-t">минут</div></div>
+    <div class="timer-item"><div class="num" id="s">00</div><div class="label-t">секунд</div></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section">
+  <h2>Место проведения</h2>
+  <p>Ресторан «Grand Palace»</p>
+  <p>г. Астана, пр. Кабанбай батыра 12</p>
+
+  <div class="map">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8b8c8d8e8f8a8b8c8d8e8f8a8b8c8d8e8f8a8b"></iframe>
+  </div>
+
+  <a href="tel:+77771234567" class="btn">Позвонить</a>
+</section>
+
+<!-- MUSIC -->
+<div class="music">
+  <button onclick="toggleMusic()">🎵</button>
+  <audio id="audio" loop>
+    <source src="https://assets.mixkit.co/music/493/493.mp3">
+  </audio>
+</div>
+
+<script>
+const date = new Date("2026-08-15T18:00:00").getTime();
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = date - now;
+
+  document.getElementById("d").textContent = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("h").textContent = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("m").textContent = Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById("s").textContent = Math.floor((diff%(1000*60))/1000);
+},1000);
+
+let playing=false;
+function toggleMusic(){
+  const audio=document.getElementById("audio");
+  if(playing){audio.pause();}else{audio.play();}
+  playing=!playing;
+}
+</script>
+
+</body>
+</html>
