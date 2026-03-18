@@ -32,7 +32,6 @@
             overflow: hidden;
         }
         
-        /* Золотые акценты */
         .gold-line {
             width: 100px;
             height: 2px;
@@ -45,7 +44,6 @@
             z-index: 2;
         }
         
-        /* Шапка */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -83,7 +81,6 @@
             letter-spacing: 2px;
         }
         
-        /* Таймер */
         .timer-section {
             margin: 40px 0;
             padding: 30px 20px;
@@ -129,7 +126,6 @@
             margin-top: 5px;
         }
         
-        /* Место проведения (кликабельное) */
         .venue-section {
             margin: 40px 0;
             text-align: center;
@@ -167,9 +163,8 @@
             border-bottom-style: solid;
         }
         
-        /* Карта */
         .map-container {
-            margin: 30px 0 40px;
+            margin: 30px 0 20px;
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(212, 175, 55, 0.2);
@@ -191,7 +186,6 @@
             text-decoration: none;
         }
         
-        /* Статичная карта (изображение) */
         .static-map {
             width: 100%;
             height: 100%;
@@ -203,15 +197,6 @@
         .map-link:hover .static-map {
             opacity: 1;
         }
-        
-        /* Или iframe (закомментирован, можно раскомментировать) */
-        /*
-        .map-iframe {
-            width: 100%;
-            height: 250px;
-            border: 0;
-        }
-        */
         
         .map-overlay {
             position: absolute;
@@ -236,7 +221,7 @@
             font-size: 16px;
             letter-spacing: 2px;
             font-weight: 600;
-            margin-top: 15px;
+            margin: 10px 0 30px;
             border: none;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
@@ -248,7 +233,6 @@
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
         
-        /* Время */
         .time-details {
             font-size: 20px;
             color: #d4af37;
@@ -260,7 +244,6 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
         
-        /* RSVP и контакты */
         .rsvp-section {
             text-align: center;
             margin: 50px 0 30px;
@@ -335,7 +318,15 @@
             letter-spacing: 1px;
         }
         
-        /* Адаптация */
+        .footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
         @media (max-width: 700px) {
             .card { padding: 30px 20px; }
             .couple { font-size: 42px; }
@@ -351,7 +342,7 @@
         
         @media (max-width: 480px) {
             .timer { gap: 10px; }
-            .timer-item { min-width: 60px; padding: 5px; }
+            .timer-item { min-width: 60px; }
             .timer-value { font-size: 28px; }
             .timer-label { font-size: 10px; }
             .route-button { padding: 10px 20px; font-size: 14px; }
@@ -362,49 +353,17 @@
 <body>
     <div class="card">
         <div class="content">
-            <!-- ДАННЫЕ ДЛЯ ЗАМЕНЫ -->
-            <?php
-            // Имена пары
-            $groom_name = "ДАНИЯР";
-            $bride_name = "АСЕЛЬ";
-            
-            // Дата и время
-            $event_date = "15 АВГУСТА 2026";
-            $event_time = "18:00";
-            $guest_gathering = "17:00"; // Сбор гостей
-            $ceremony_time = "18:00";    // Церемония
-            $furshet_time = "20:00";      // Фуршет
-            
-            // Место проведения
-            $venue_name = "РЕСТОРАН «ЭДЕМ»";
-            $venue_address = "микрорайон Горный Гигант, 15, Алматы";
-            $venue_address_short = "Горный Гигант, 15";
-            $venue_city = "Алматы";
-            
-            // Ссылка на карту (для кнопки "Проложить маршрут")
-            $map_link = "https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015";
-            
-            // Контакты
-            $organizer_name = "Айгуль";
-            $organizer_phone = "+7 (777) 123-45-67";
-            $groom_phone = "+7 (777) 111-22-33";
-            $bride_phone = "+7 (777) 444-55-66";
-            
-            // Дата для таймера (год, месяц-1, день, час, минута)
-            $timer_year = 2026;
-            $timer_month = 7; // Август (0-11)
-            $timer_day = 15;
-            $timer_hour = 18;
-            $timer_minute = 0;
-            ?>
+            <!-- ========== НАСТРОЙКИ (МЕНЯЙ ЗДЕСЬ) ========== -->
+            <!-- Имена -->
+            <div style="display: none;">ДАНИЯР и АСЕЛЬ</div>
             
             <!-- ШАПКА -->
             <div class="header">
                 <div class="event-type">LUXURY GOLD WEDDING</div>
                 <h1 class="couple">
-                    <?php echo $groom_name; ?> <span>&</span> <?php echo $bride_name; ?>
+                    ДАНИЯР <span>&</span> АСЕЛЬ
                 </h1>
-                <div class="date"><?php echo $event_date; ?> • <?php echo $event_time; ?></div>
+                <div class="date">15 АВГУСТА 2026 • 18:00</div>
             </div>
             
             <div class="gold-line"></div>
@@ -432,21 +391,21 @@
                 </div>
             </div>
             
-            <!-- МЕСТО ПРОВЕДЕНИЯ (кликабельное) -->
+            <!-- МЕСТО ПРОВЕДЕНИЯ -->
             <div class="venue-section">
                 <div class="venue-label">МЕСТО ПРОВЕДЕНИЯ</div>
-                <div class="venue-name"><?php echo $venue_name; ?></div>
+                <div class="venue-name">РЕСТОРАН «ЭДЕМ»</div>
                 <div class="venue-address">
-                    <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer">
-                        <?php echo $venue_address; ?>
+                    <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer">
+                        микрорайон Горный Гигант, 15, Алматы
                     </a>
                 </div>
             </div>
             
-            <!-- КАРТА (кликабельная, ведет на 2GIS/Google Maps) -->
+            <!-- КАРТА (статичная, кликабельная) -->
             <div class="map-container">
-                <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer" class="map-link">
-                    <!-- Статичная карта-заглушка (можно заменить на реальную карту) -->
+                <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="map-link">
+                    <!-- Статичное изображение карты (SVG с маркером) -->
                     <svg class="static-map" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid slice">
                         <rect width="800" height="250" fill="#2a251f"/>
                         <!-- Золотая сетка -->
@@ -461,7 +420,7 @@
                         <!-- Маркер местоположения -->
                         <circle cx="400" cy="125" r="15" fill="#d4af37" opacity="0.3"/>
                         <circle cx="400" cy="125" r="8" fill="#d4af37"/>
-                        <text x="400" y="170" text-anchor="middle" fill="#d4af37" font-size="12" font-family="Arial"><?php echo $venue_name; ?></text>
+                        <text x="400" y="170" text-anchor="middle" fill="#d4af37" font-size="12" font-family="Arial">РЕСТОРАН ЭДЕМ</text>
                     </svg>
                     <div class="map-overlay">
                         <span>📍 Нажмите, чтобы открыть карту</span>
@@ -469,16 +428,16 @@
                 </a>
             </div>
             
-            <!-- КНОПКА "ПРОЛОЖИТЬ МАРШРУТ" -->
+            <!-- КНОПКА МАРШРУТА -->
             <div style="text-align: center;">
-                <a href="<?php echo $map_link; ?>" target="_blank" rel="noopener noreferrer" class="route-button">
+                <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="route-button">
                     🗺️ ПРОЛОЖИТЬ МАРШРУТ
                 </a>
             </div>
             
             <!-- ВРЕМЯ -->
             <div class="time-details">
-                СБОР ГОСТЕЙ В <?php echo $guest_gathering; ?> • ЦЕРЕМОНИЯ В <?php echo $ceremony_time; ?> • ФУРШЕТ С <?php echo $furshet_time; ?>
+                СБОР ГОСТЕЙ В 17:00 • ЦЕРЕМОНИЯ В 18:00 • ФУРШЕТ С 20:00
             </div>
             
             <!-- RSVP -->
@@ -489,29 +448,29 @@
             <!-- КОНТАКТЫ -->
             <div class="contacts">
                 <div class="contact-item">
-                    <div class="contact-name"><?php echo $groom_name; ?></div>
+                    <div class="contact-name">ДАНИЯР</div>
                     <div class="contact-role">ЖЕНИХ</div>
-                    <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $groom_phone); ?>"><?php echo $groom_phone; ?></a>
+                    <a href="tel:+77771112233">+7 (777) 111-22-33</a>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-name"><?php echo $bride_name; ?></div>
+                    <div class="contact-name">АСЕЛЬ</div>
                     <div class="contact-role">НЕВЕСТА</div>
-                    <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $bride_phone); ?>"><?php echo $bride_phone; ?></a>
+                    <a href="tel:+77774445566">+7 (777) 444-55-66</a>
                 </div>
             </div>
             
             <!-- ОРГАНИЗАТОР -->
             <div class="footer">
-                Организатор: <?php echo $organizer_name; ?>, <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $organizer_phone); ?>" style="color: #d4af37; text-decoration: none;"><?php echo $organizer_phone; ?></a><br>
-                <?php echo $venue_city; ?> • <?php echo $event_date; ?>
+                Организатор: Айгуль, <a href="tel:+77771234567">+7 (777) 123-45-67</a><br>
+                АЛМАТЫ • 15 АВГУСТА 2026
             </div>
         </div>
     </div>
     
     <script>
         (function() {
-            // Данные для таймера (синхронизированы с PHP)
-            const weddingDate = new Date(<?php echo $timer_year; ?>, <?php echo $timer_month; ?>, <?php echo $timer_day; ?>, <?php echo $timer_hour; ?>, <?php echo $timer_minute; ?>, 0);
+            // Дата свадьбы: 15 августа 2026, 18:00
+            const weddingDate = new Date(2026, 7, 15, 18, 0, 0);
             
             function updateTimer() {
                 const now = new Date();
