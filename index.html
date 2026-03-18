@@ -1,106 +1,310 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Артем & Елизавета</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter&display=swap" rel="stylesheet">
-
-<style>
-body{
-  margin:0;
-  font-family:Inter;
-  background:#000;
-  color:#fff;
-}
-
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:
-  linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
-  url('https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1500&q=80') center/cover;
-}
-
-.names{
-  font-family:'Cormorant Garamond';
-  font-size:60px;
-}
-
-.date{
-  color:#d4af37;
-}
-
-.timer{
-  padding:80px 20px;
-  text-align:center;
-}
-
-.timer div{
-  display:inline-block;
-  margin:10px;
-}
-
-.map iframe{
-  width:100%;
-  height:300px;
-  border:0;
-}
-
-.music{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Luxury Gold | Стандартное приглашение</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+        }
+        
+        body {
+            background: #0c0b0a;
+            padding: 20px;
+            background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+        }
+        
+        .card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1a1714;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Золотые акценты */
+        .gold-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 20px auto;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .event-type {
+            font-size: 14px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .couple {
+            font-size: 64px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #f5e6d3;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .couple span {
+            display: inline-block;
+            font-size: 40px;
+            color: #d4af37;
+            margin: 0 15px;
+        }
+        
+        .date {
+            font-size: 28px;
+            color: #e5d5b5;
+            margin: 20px 0 30px;
+            letter-spacing: 2px;
+        }
+        
+        /* Таймер */
+        .timer-section {
+            margin: 40px 0;
+            padding: 25px 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+        
+        .timer-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #b5a17c;
+            margin-bottom: 20px;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .timer-item {
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .timer-value {
+            font-size: 48px;
+            font-weight: 400;
+            color: #d4af37;
+            line-height: 1;
+            text-shadow: 0 0 20px #d4af37;
+        }
+        
+        .timer-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #8a7f6b;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        
+        .venue-block {
+            margin: 40px 0;
+        }
+        
+        .venue-name {
+            font-size: 32px;
+            color: #f0e6d2;
+            margin-bottom: 5px;
+        }
+        
+        .venue-address {
+            font-size: 18px;
+            color: #b5a17c;
+            font-style: italic;
+        }
+        
+        .time-details {
+            font-size: 20px;
+            color: #d4af37;
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 50px;
+        }
+        
+        .rsvp {
+            margin: 40px 0 20px;
+        }
+        
+        .rsvp-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #0c0b0a;
+            padding: 18px 50px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .rsvp-button:hover {
+            background: #e5c158;
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .contacts {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            color: #b5a17c;
+        }
+        
+        .contact-item a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 8px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #5e5340;
+        }
+        
+        @media (max-width: 600px) {
+            .card { padding: 30px 20px; }
+            .couple { font-size: 42px; }
+            .couple span { font-size: 28px; margin: 0 8px; }
+            .timer-value { font-size: 36px; }
+            .timer-item { min-width: 60px; }
+            .contacts { gap: 20px; }
+        }
+    </style>
 </head>
-
 <body>
-
-<section class="hero">
-  <div>
-    <div class="names">Артем & Елизавета</div>
-    <div class="date">5 СЕНТЯБРЯ 2026</div>
-  </div>
-</section>
-
-<section class="timer">
-  <h2>До свадьбы</h2>
-  <div id="d"></div>
-  <div id="h"></div>
-  <div id="m"></div>
-  <div id="s"></div>
-</section>
-
-<section>
-  <h2 style="text-align:center;">Место</h2>
-  <p style="text-align:center;">Grand Hall, Астана</p>
-
-  <div class="map">
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8b8"></iframe>
-  </div>
-</section>
-
-<div class="music">
-  <button onclick="a.play()">🎵</button>
-  <audio id="a" src="https://assets.mixkit.co/music/493/493.mp3"></audio>
-</div>
-
-<script>
-const date=new Date("2026-09-05").getTime();
-setInterval(()=>{
-let now=new Date().getTime();
-let d=date-now;
-document.getElementById('d').innerHTML=Math.floor(d/(1000*60*60*24));
-document.getElementById('h').innerHTML=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-document.getElementById('m').innerHTML=Math.floor((d%(1000*60*60))/(1000*60));
-document.getElementById('s').innerHTML=Math.floor((d%(1000*60))/1000);
-},1000);
-</script>
-
+    <div class="card">
+        <div class="content">
+            <!-- ДАННЫЕ ДЛЯ ЗАМЕНЫ -->
+            <!-- Имена: ДАНИЯР & АСЕЛЬ -->
+            <!-- Дата: 15 августа 2026 18:00 -->
+            <!-- Место: РЕСТОРАН "ЭДЕМ" с адресом -->
+            <!-- Организатор: Айгуль, +7 (777) 123-45-67 -->
+            <!-- Контакты пары: Данияр +7 777 111-22-33, Асель +7 777 444-55-66 -->
+            
+            <div class="event-type">ЭКО-СВАДЬБА В ЗОЛОТЫХ ТОНАХ</div>
+            <h1 class="couple">
+                ДАНИЯР <span>&</span> АСЕЛЬ
+            </h1>
+            <div class="date">15 АВГУСТА 2026 • 18:00</div>
+            
+            <div class="gold-line"></div>
+            
+            <!-- Таймер обратного отсчета -->
+            <div class="timer-section">
+                <div class="timer-title">ДО НАЧАЛА ТОРЖЕСТВА</div>
+                <div class="timer" id="timer">
+                    <div class="timer-item">
+                        <div class="timer-value" id="days">00</div>
+                        <div class="timer-label">ДНЕЙ</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-value" id="hours">00</div>
+                        <div class="timer-label">ЧАСОВ</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-value" id="minutes">00</div>
+                        <div class="timer-label">МИНУТ</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-value" id="seconds">00</div>
+                        <div class="timer-label">СЕКУНД</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="venue-block">
+                <div class="venue-name">РЕСТОРАН «ЭДЕМ»</div>
+                <div class="venue-address">микрорайон Горный Гигант, 15, Алматы</div>
+            </div>
+            
+            <div class="time-details">
+                СБОР ГОСТЕЙ В 17:00 • ЦЕРЕМОНИЯ В 18:00 • ФУРШЕТ С 20:00
+            </div>
+            
+            <div class="rsvp">
+                <a href="#" class="rsvp-button">ПОДТВЕРДИТЬ УЧАСТИЕ</a>
+            </div>
+            
+            <div class="contacts">
+                <div class="contact-item">Данияр: <a href="tel:+77771112233">+7 (777) 111-22-33</a></div>
+                <div class="contact-item">Асель: <a href="tel:+77774445566">+7 (777) 444-55-66</a></div>
+            </div>
+            
+            <div class="footer">
+                Организатор: Айгуль, +7 (777) 123-45-67 • АЛМАТЫ • 2026
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        (function() {
+            // Установите дату свадьбы (год, месяц (0-11), день, часы, минуты)
+            const weddingDate = new Date(2026, 7, 15, 18, 0, 0); // 15 августа 2026, 18:00
+            
+            function updateTimer() {
+                const now = new Date();
+                const diff = weddingDate - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days < 10 ? '0' + days : days;
+                document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>
