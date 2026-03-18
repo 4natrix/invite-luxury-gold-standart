@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Luxury Gold | Стандарт с картой</title>
+    <title>Luxury Gold | Стандарт с картами</title>
     <style>
         * {
             margin: 0;
@@ -163,39 +163,80 @@
             border-bottom-style: solid;
         }
         
-        .map-container {
+        /* Блок с картами */
+        .maps-section {
             margin: 30px 0 20px;
+        }
+        
+        .map-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .map-tab {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #b5a17c;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .map-tab:hover {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+        
+        .map-tab.active {
+            background: #d4af37;
+            color: #0c0b0a;
+            border-color: #d4af37;
+            font-weight: 600;
+        }
+        
+        .map-container {
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s;
-            position: relative;
             background: #2a251f;
+            margin-bottom: 15px;
         }
         
         .map-container:hover {
             border-color: rgba(212, 175, 55, 0.6);
         }
         
-        .map-link {
-            display: block;
+        .map-frame {
             width: 100%;
             height: 250px;
-            background: #2a251f;
-            position: relative;
-            text-decoration: none;
+            border: 0;
+            display: block;
         }
         
         .static-map {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
             opacity: 0.9;
             transition: opacity 0.3s;
+            display: block;
         }
         
-        .map-link:hover .static-map {
+        .map-container:hover .static-map {
             opacity: 1;
+        }
+        
+        .map-link {
+            display: block;
+            position: relative;
+            text-decoration: none;
         }
         
         .map-overlay {
@@ -209,29 +250,42 @@
             color: #d4af37;
             font-size: 16px;
             letter-spacing: 2px;
+            pointer-events: none;
+        }
+        
+        .route-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
         }
         
         .route-button {
-            display: inline-block;
-            background: #d4af37;
-            color: #0c0b0a;
-            padding: 12px 30px;
-            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 10px 20px;
+            border-radius: 40px;
             text-decoration: none;
-            font-size: 16px;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin: 10px 0 30px;
-            border: none;
+            font-size: 15px;
+            letter-spacing: 1px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         
         .route-button:hover {
-            background: #e5c158;
+            background: #d4af37;
+            color: #0c0b0a;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
+        
+        .route-button.google:hover { background: #4285F4; border-color: #4285F4; color: white; }
+        .route-button.yandex:hover { background: #FF3B3B; border-color: #FF3B3B; color: white; }
+        .route-button.duogis:hover { background: #F28C38; border-color: #F28C38; color: white; }
         
         .time-details {
             font-size: 20px;
@@ -336,8 +390,8 @@
             .timer-item { min-width: 70px; }
             .venue-name { font-size: 28px; }
             .venue-address { font-size: 18px; }
-            .map-link { height: 200px; }
             .contacts { gap: 30px; }
+            .map-tab { padding: 8px 15px; font-size: 14px; }
         }
         
         @media (max-width: 480px) {
@@ -345,8 +399,9 @@
             .timer-item { min-width: 60px; }
             .timer-value { font-size: 28px; }
             .timer-label { font-size: 10px; }
-            .route-button { padding: 10px 20px; font-size: 14px; }
+            .route-button { padding: 8px 15px; font-size: 13px; }
             .rsvp-button { padding: 14px 30px; font-size: 16px; }
+            .map-frame, .static-map { height: 200px; }
         }
     </style>
 </head>
@@ -402,37 +457,73 @@
                 </div>
             </div>
             
-            <!-- КАРТА (статичная, кликабельная) -->
-            <div class="map-container">
-                <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="map-link">
-                    <!-- Статичное изображение карты (SVG с маркером) -->
-                    <svg class="static-map" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid slice">
-                        <rect width="800" height="250" fill="#2a251f"/>
-                        <!-- Золотая сетка -->
-                        <path d="M0 50 L800 50" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M0 100 L800 100" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M0 150 L800 150" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M0 200 L800 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M100 0 L100 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M300 0 L300 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M500 0 L500 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <path d="M700 0 L700 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-                        <!-- Маркер местоположения -->
-                        <circle cx="400" cy="125" r="15" fill="#d4af37" opacity="0.3"/>
-                        <circle cx="400" cy="125" r="8" fill="#d4af37"/>
-                        <text x="400" y="170" text-anchor="middle" fill="#d4af37" font-size="12" font-family="Arial">РЕСТОРАН ЭДЕМ</text>
-                    </svg>
-                    <div class="map-overlay">
-                        <span>📍 Нажмите, чтобы открыть карту</span>
+            <!-- КАРТЫ (три вкладки) -->
+            <div class="maps-section">
+                <!-- Вкладки переключения карт -->
+                <div class="map-tabs">
+                    <button class="map-tab active" onclick="showMap('2gis')">2GIS</button>
+                    <button class="map-tab" onclick="showMap('google')">Google Maps</button>
+                    <button class="map-tab" onclick="showMap('yandex')">Яндекс Карты</button>
+                </div>
+                
+                <!-- Контейнер для карты -->
+                <div class="map-container" id="map-container">
+                    <!-- 2GIS (по умолчанию) -->
+                    <div id="map-2gis" style="display: block;">
+                        <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="map-link">
+                            <svg class="static-map" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid slice">
+                                <rect width="800" height="250" fill="#2a251f"/>
+                                <!-- Золотая сетка -->
+                                <path d="M0 50 L800 50" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 100 L800 100" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 150 L800 150" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M0 200 L800 200" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M100 0 L100 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M300 0 L300 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M500 0 L500 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <path d="M700 0 L700 250" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+                                <!-- Логотип 2GIS -->
+                                <text x="120" y="40" fill="#d4af37" font-size="16" font-weight="bold" font-family="Arial">2GIS</text>
+                                <!-- Маркер местоположения -->
+                                <circle cx="400" cy="125" r="15" fill="#F28C38" opacity="0.3"/>
+                                <circle cx="400" cy="125" r="8" fill="#F28C38"/>
+                                <text x="400" y="170" text-anchor="middle" fill="#F28C38" font-size="12" font-family="Arial">РЕСТОРАН ЭДЕМ</text>
+                            </svg>
+                            <div class="map-overlay">
+                                <span>📍 Открыть в 2GIS</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            
-            <!-- КНОПКА МАРШРУТА -->
-            <div style="text-align: center;">
-                <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="route-button">
-                    🗺️ ПРОЛОЖИТЬ МАРШРУТ
-                </a>
+                    
+                    <!-- Google Maps (скрыта) -->
+                    <div id="map-google" style="display: none;">
+                        <iframe class="map-frame" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.142857!2d76.928!3d43.238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE0JzE2LjgiTiA3NsKwNTUnNDAuOCJF!5e0!3m2!1sru!2skz!4v1234567890" 
+                            allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                    
+                    <!-- Яндекс Карты (скрыта) -->
+                    <div id="map-yandex" style="display: none;">
+                        <iframe class="map-frame" 
+                            src="https://yandex.ru/map-widget/v1/?ll=76.928%2C43.238&z=16&pt=76.928,43.238,pm2blm" 
+                            allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Кнопки маршрутов под картой -->
+                <div class="route-buttons">
+                    <a href="https://2gis.kz/almaty/search/%D0%93%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%93%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%2C%2015" target="_blank" rel="noopener noreferrer" class="route-button duogis">
+                        🧭 2GIS Маршрут
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=43.238,76.928" target="_blank" rel="noopener noreferrer" class="route-button google">
+                        🗺️ Google Маршрут
+                    </a>
+                    <a href="https://yandex.ru/maps/?pt=76.928,43.238&z=16&l=map" target="_blank" rel="noopener noreferrer" class="route-button yandex">
+                        🧭 Яндекс Маршрут
+                    </a>
+                </div>
             </div>
             
             <!-- ВРЕМЯ -->
@@ -468,8 +559,8 @@
     </div>
     
     <script>
+        // Таймер
         (function() {
-            // Дата свадьбы: 15 августа 2026, 18:00
             const weddingDate = new Date(2026, 7, 15, 18, 0, 0);
             
             function updateTimer() {
@@ -498,6 +589,24 @@
             updateTimer();
             setInterval(updateTimer, 1000);
         })();
+        
+        // Переключение карт
+        function showMap(mapType) {
+            // Скрыть все карты
+            document.getElementById('map-2gis').style.display = 'none';
+            document.getElementById('map-google').style.display = 'none';
+            document.getElementById('map-yandex').style.display = 'none';
+            
+            // Показать выбранную
+            document.getElementById('map-' + mapType).style.display = 'block';
+            
+            // Обновить активный класс у вкладок
+            const tabs = document.querySelectorAll('.map-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Найти нажатую вкладку и сделать активной
+            event.target.classList.add('active');
+        }
     </script>
 </body>
 </html>
